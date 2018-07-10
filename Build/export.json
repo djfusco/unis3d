@@ -1,0 +1,14 @@
+{
+"companyName": "3dSource",
+"productName": "Unis Brands",
+"dataUrl": "export.data.unityweb",
+"asmCodeUrl": "export.asm.code.unityweb",
+"asmMemoryUrl": "export.asm.memory.unityweb",
+"asmFrameworkUrl": "export.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unis brands interface</title>
+    <link rel="stylesheet" href="unis.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js"></script>
+    <script src="core.js"></script>
+    <script type="text/javascript" src="src/source3Dpreloader.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+
+    <script type="text/javascript">
+        var controller;
+
+        $(function () {
+            $("#leftMenu").hide();
+            $("#container").source3Dpreloader({background: true, removeOnComplete: false, size: 256, percents: true});
+            UnityLoader.compatibilityCheck = function (e, t, r) {
+                t();
+            };
+            var gameInstance = UnityLoader.instantiate("gameContainer", "Build/export.json", {onProgress: UnityProgress});
+            controller = new Controller(gameInstance);
+        });
+
+        function UnityProgress(gameInstance, progress) {
+            $("#container").source3Dpreloader("update", 100 * progress);
+        }
+
+        window.addEventListener("resize", function () {
+            try {
+                var canva = document.getElementById('#canvas');
+                canva.width = window.innerWidth;
+                canva.height = window.innerHeight;
+            } catch (error) {
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                var canva = document.getElementById('#canvas');
+                canva.width = window.innerWidth;
+                canva.height = window.innerHeight;
+            } catch (error) {
+            }
+        });
+    </script>
+</head>
+<body>
+
+<div id="leftMenu">
+
+    <form
+    action="
+    http://ec2-54-202-50-101.us-west-2.compute.amazonaws.com/unis/postunis.php"
+    method="post"
+    >
+        <label><input type="radio" name="type" value="type1" checked>DualStrap</label>
+        <label><input type="radio" name="type" value="type2">MonoStrap</label>
+        <input type="hidden" name="midsole" id="midsole" value="">
+        <input type="hidden" name="cushion" id="cushion" value="">
+        <input type="hidden" name="upper" id="upper" value="">
+        <input type="hidden" name="logo1" id="logo1" value="">
+        <input type="hidden" name="logo2" id="logo2" value="">
+        <input type="hidden" name="buttons" id="buttons" value="">
+        <input type="hidden" name="outersole" id="outersole" value="">
+        <label><input type="submit" name="submit" value="Submit"></label>
+    </form>
+
+    <div class="mainSelector" id="mainselect">
+        <ul></ul>
+    </div>
+    <div class="subSelector" id="double">
+        <ul></ul>
+    </div>
+</div>
+
+<div class='preloader'>
+    <div id="container">
+    </div>
+</div>
+<div id="gameContainer" style="width: 50%; height: 50%; margin: auto"></div>
+
+</body>
+</html>
